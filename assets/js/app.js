@@ -35,3 +35,25 @@ let tasks = [
     status: 2,
   },
 ];
+
+console.log(tasks);
+
+function createDummyTask(task = {}) {
+  let id = 0;
+  taskIDArray = tasks.map((item, index, array) => item.id);
+  while (true) {
+    if (id in taskIDArray) {
+      id++;
+    } else {
+      break;
+    }
+  }
+
+  task.id = id;
+  task.title = `task ${id}`;
+  task.description = `description ${id}`;
+  task.labels = ['Nan'];
+  task.status = 1;
+  tasks.push(task);
+  return task;
+}
