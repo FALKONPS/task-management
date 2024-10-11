@@ -40,7 +40,7 @@ console.log(tasks);
 
 function createDummyTask(task = {}) {
   let id = 0;
-  taskIDArray = tasks.map((item, index, array) => item.id);
+  let taskIDArray = tasks.map((item, index, array) => item.id);
   while (true) {
     if (id in taskIDArray) {
       id++;
@@ -56,4 +56,13 @@ function createDummyTask(task = {}) {
   task.status = 1;
   tasks.push(task);
   return task;
+}
+
+function deleteTaskById(id) {
+  let taskIDArray = tasks.map((item, index, array) => item.id);
+  index = taskIDArray.findIndex((element) => (element = id));
+  if (index >= 0) {
+    // warring
+    delete tasks[index];
+  }
 }
