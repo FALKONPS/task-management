@@ -66,3 +66,11 @@ function deleteTaskById(id) {
     delete tasks[index];
   }
 }
+
+function editTaskById(id, update = {}) {
+  let taskIDArray = tasks.map((item, index, array) => item.id);
+  index = taskIDArray.findIndex((element) => (element = id));
+
+  // overwrite values
+  tasks[index] = Object.assign({}, tasks[index], update);
+}
