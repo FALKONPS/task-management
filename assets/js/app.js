@@ -1,4 +1,4 @@
-const status = {
+const status_process = {
   1: 'To Do',
   2: 'In Progress',
   3: 'Done',
@@ -16,7 +16,7 @@ let tasks = [
     id: 2,
     title: 'Cool',
     description: 'Find a good movie',
-    labels: ['easy'],
+    labels: ['easy', 'fun'],
     status: 1,
   },
   {
@@ -89,3 +89,27 @@ function toggleStatus(id, value = -1) {
 function viewTasks() {
   console.log(tasks);
 }
+
+function renderTasks() {
+  const tasksGrid = document.getElementsByClassName('tasks-grid')[0];
+  tasksGrid.innerHTML = '';
+
+  tasks.forEach((task) => {
+    const taskCard = document.createElement('div');
+    taskCard.className = 'task-card';
+    taskCard.innerHTML = `
+          <h3>${task.title}</h3>
+          <p>${task.description}</p>
+          <div class="labels">
+              ${task.labels
+                .map((label) => `<span class="label">${label}</span>`)
+                .join('')} 
+          </div>
+          <p>Status: ${status_process[task.status]}</p>
+          <p>ID: ${task.id}</p>
+      `;
+    tasksGrid.appendChild(taskCard);
+  });
+}
+
+renderTasks();
