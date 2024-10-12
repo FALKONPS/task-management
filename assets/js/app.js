@@ -74,3 +74,18 @@ function editTaskById(id, update = {}) {
   // overwrite values
   tasks[index] = Object.assign({}, tasks[index], update);
 }
+
+function toggleStatus(id, value = -1) {
+  let taskIDArray = tasks.map((item, index, array) => item.id);
+  index = taskIDArray.findIndex((element) => (element = id));
+  if (value > 0) {
+    tasks[index].status = value;
+  } else {
+    tasks[index].status = ((tasks[index].status + 1) % 3) + 1;
+  }
+  return tasks[index].status;
+}
+
+function viewTasks() {
+  console.log(tasks);
+}
