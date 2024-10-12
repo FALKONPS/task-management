@@ -4,13 +4,13 @@ const status_process = {
   3: 'Done',
 };
 
-let tasks;
+let tasks = [];
 
 function createDummyTask(task = {}) {
   let id = 0;
-  let taskIDArray = tasks.map((item, index, array) => item.id);
+  let taskIDArray = tasks.map((item) => item.id);
   while (true) {
-    if (id in taskIDArray) {
+    if (taskIDArray.includes(id)) {
       id++;
     } else {
       break;
@@ -27,25 +27,20 @@ function createDummyTask(task = {}) {
 }
 
 function deleteTaskById(id) {
-  let taskIDArray = tasks.map((item, index, array) => item.id);
-  index = taskIDArray.findIndex((element) => (element = id));
+  const index = tasks.findIndex((task) => task.id === id);
   if (index >= 0) {
-    // warring
-    delete tasks[index];
+    tasks.splice(index, 1);
   }
 }
 
 function editTaskById(id, update = {}) {
-  let taskIDArray = tasks.map((item, index, array) => item.id);
-  index = taskIDArray.findIndex((element) => (element = id));
-
+  const index = tasks.findIndex((task) => task.id === id);
   // overwrite values
   tasks[index] = Object.assign({}, tasks[index], update);
 }
 
 function toggleStatus(id, value = -1) {
-  let taskIDArray = tasks.map((item, index, array) => item.id);
-  index = taskIDArray.findIndex((element) => (element = id));
+  const index = tasks.findIndex((task) => task.id === id);
   if (value > 0) {
     tasks[index].status = value;
   } else {
@@ -58,11 +53,11 @@ function viewTasks() {
   console.log(tasks);
 }
 
-function renderTasks() {
-  const tasksGrid = document.getElementsByClassName('tasks-grid')[0];
-  tasksGrid.innerHTML = '';
+function renderTasks(filteredTasks = tasks) {
+  const tasksContainer = document.getElementById('tasksContainer');
+  tasksContainer.innerHTML = '';
 
-  tasks.forEach((task) => {
+  filteredTasks.forEach((task) => {
     const taskCard = document.createElement('div');
     taskCard.className = 'task-card';
     taskCard.innerHTML = `
@@ -76,7 +71,10 @@ function renderTasks() {
           <p>Status: ${status_process[task.status]}</p>
           <p>ID: ${task.id}</p>
       `;
-    tasksGrid.appendChild(taskCard);
+    tasksContainer.appendChild(taskCard);
+  });
+}
+
   });
 }
 
