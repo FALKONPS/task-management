@@ -4,39 +4,7 @@ const status_process = {
   3: 'Done',
 };
 
-let tasks = [
-  {
-    id: 1,
-    title: 'Nice',
-    description: 'Search for a job',
-    labels: ['hard'],
-    status: 2,
-  },
-  {
-    id: 2,
-    title: 'Cool',
-    description: 'Find a good movie',
-    labels: ['easy', 'fun'],
-    status: 1,
-  },
-  {
-    id: 3,
-    title: 'Trip to the Moon',
-    description: 'Build a spaceship and strive to explore space',
-    labels: ['hard'],
-    status: 3,
-  },
-  {
-    id: 4,
-    title: 'Build a Company',
-    description:
-      "No job? Corrupt companies? It's okay, create your own company!",
-    labels: ['easy'],
-    status: 2,
-  },
-];
-
-console.log(tasks);
+let tasks;
 
 function createDummyTask(task = {}) {
   let id = 0;
@@ -112,4 +80,10 @@ function renderTasks() {
   });
 }
 
-renderTasks();
+fetch('./assets/data/tasks.json')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(tasks);
+    tasks = data;
+    renderTasks();
+  });
