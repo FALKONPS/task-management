@@ -6,7 +6,7 @@ const status_process = {
 
 let tasks = [];
 
-function createDummyTask(task = {}) {
+function createTask(task = {}) {
   let id = 0;
   let taskIDArray = tasks.map((item) => item.id);
   while (true) {
@@ -16,14 +16,13 @@ function createDummyTask(task = {}) {
       break;
     }
   }
-
   task.id = id;
-  task.title = `task ${id}`;
-  task.description = `description ${id}`;
-  task.labels = ['Nan'];
-  task.status = 1;
+  task.title = task.title || `Task ${id}`;
+  task.description = task.description || `Description ${id}`;
+  task.labels = task.labels || ['Nan'];
+  task.status = task.status || 1;
   tasks.push(task);
-  return task;
+  return id;
 }
 
 function deleteTaskById(id) {
@@ -75,8 +74,12 @@ function renderTasks(filteredTasks = tasks) {
   });
 }
 
-  });
-}
+document.getElementById('createBtn').addEventListener('click', () => {
+  // no data
+  createTask();
+  renderTasks();
+});
+
 
 fetch('./assets/data/tasks.json')
   .then((response) => response.json())
