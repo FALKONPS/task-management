@@ -24,15 +24,66 @@ header {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   font-weight: lighter;
   letter-spacing: 3px;
 }
 
 .container {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px;
 }
 
+/* good reference  */
+/* https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/ */
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.task-card {
+  background-color: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  /* margin 20px; */
+  transition: all 0.3s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0px 4px var(--accent-green);
+}
+
+.task-card h3 {
+  margin-top: 10px;
+  color: var(--accent-blue);
+  font-size: 1.4rem;
+}
+
+.task-card p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.task-card .labels {
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.task-card .label {
+  background-color: var(--accent-green);
+  color: var(--text-light);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
