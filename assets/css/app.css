@@ -1,0 +1,10 @@
+:root {
+  --bg-dark: #1a1a1a;
+  --bg-darker: #0f0f0f;
+  --text-light: #e0e0e0;
+  --text-dim: #a0a0a0;
+  --accent-blue: #3498db;
+  --accent-green: #27ae60;
+  --border-color: #2a2a2a;
+  --error-color: #e74c3c;
+}
