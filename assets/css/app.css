@@ -106,3 +106,27 @@ h1 {
 .container button:hover {
   background-color: #2980b9;
 }
+#searchContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#searchInput {
+  flex-grow: 1;
+}
+.buttons span {
+  margin: auto 0;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--text-light);
+  font-family: 'Varela Round', sans-serif;
+}
+input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
