@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        /* border: 2px red solid; */
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        font-family: 'Roboto Mono', monospace;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: transparent;
+        background-color: #000;
+        color: lime;
+      }
+      #shell {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      #command {
+        display: flex;
+        align-items: center;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        background-color: lime;
+        animation: blink 0.7s infinite;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      .transparent {
+        opacity: 0;
+        /* ignore element space */
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="shell">
+      <div id="command">
+        <span>root@xii:~$ </span>
+        <!-- dummy transparent copy the value to span! time to sleep!!!! -->
+        <span>here gose the input</span>
+        <input type="text" class="transparent" value="asdsdad" autofocus />
+        <span class="cursor"></span>
+      </div>
+    </div>
+
+  </body>
+</html>
