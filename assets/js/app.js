@@ -73,24 +73,6 @@ function renderTasks(filteredTasks = tasks) {
     tasksContainer.appendChild(taskCard);
   });
 }
-
-document.getElementById('createBtn').addEventListener('click', () => {
-  // no data
-  createTask();
-  renderTasks();
-});
-
-document.getElementById('deleteBtn').addEventListener('click', () => {});
-document.getElementById('editBtn').addEventListener('click', () => {});
-
-document.getElementById('searchInput').addEventListener('input', () => {
-  renderTasks(searchTask());
-});
-
-document.getElementById('searchBtn').addEventListener('click', () => {
-  renderTasks(searchTask());
-});
-
 function searchTask() {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
   const filteredTasks = tasks.filter((task) =>
@@ -99,10 +81,25 @@ function searchTask() {
   return filteredTasks;
 }
 
-fetch('./assets/data/tasks.json')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(tasks);
-    tasks = data;
-    renderTasks();
-  });
+function loadJsonData() {
+  fetch('./assets/data/tasks.json')
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(tasks);
+      tasks = data;
+      renderTasks();
+    });
+}
+
+// Event
+document.getElementById('searchInput').addEventListener('input', () => {
+  renderTasks(searchTask());
+});
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+  renderTasks(searchTask());
+});
+
+//
+
+loadJsonData();
