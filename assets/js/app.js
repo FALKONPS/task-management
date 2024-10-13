@@ -80,6 +80,24 @@ document.getElementById('createBtn').addEventListener('click', () => {
   renderTasks();
 });
 
+document.getElementById('deleteBtn').addEventListener('click', () => {});
+document.getElementById('editBtn').addEventListener('click', () => {});
+
+document.getElementById('searchInput').addEventListener('input', () => {
+  renderTasks(searchTask());
+});
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+  renderTasks(searchTask());
+});
+
+function searchTask() {
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchTerm)
+  );
+  return filteredTasks;
+}
 
 fetch('./assets/data/tasks.json')
   .then((response) => response.json())
