@@ -81,6 +81,15 @@ function searchTask() {
   return filteredTasks;
 }
 
+function updateTaskSelects() {
+  const deleteTaskSelect = document.getElementById('deleteTaskSelect');
+  tasks.forEach((task) => {
+    const option = document.createElement('option');
+    option.value = task.id;
+    option.textContent = `${task.title} (ID: ${task.id})`;
+    deleteTaskSelect.appendChild(option.cloneNode(true));
+}
+
 function loadJsonData() {
   fetch('./assets/data/tasks.json')
     .then((response) => response.json())
@@ -103,6 +112,7 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 //
 
 loadJsonData();
+
 document.getElementById('confirmCreate').addEventListener('click', () => {
   const title = document.getElementById('taskTitle').value;
   const description = document.getElementById('taskDescription').value;
@@ -113,5 +123,10 @@ document.getElementById('confirmCreate').addEventListener('click', () => {
   const status = parseInt(document.getElementById('taskStatus').value);
 
   createTask({ title, description, labels, status });
+  renderTasks();
+});
+document.getElementById('confirmDelete').addEventListener('click', () => {
+  const taskId = parseInt(document.getElementById('deleteTaskSelect').value);
+  deleteTaskById(taskId);
   renderTasks();
 });
