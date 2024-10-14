@@ -72,6 +72,7 @@ function renderTasks(filteredTasks = tasks) {
       `;
     tasksContainer.appendChild(taskCard);
   });
+  updateTaskSelects();
 }
 function searchTask() {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -83,11 +84,17 @@ function searchTask() {
 
 function updateTaskSelects() {
   const deleteTaskSelect = document.getElementById('deleteTaskSelect');
+  const editTaskSelect = document.getElementById('editTaskSelect');
+  deleteTaskSelect.innerHTML = '';
+  editTaskSelect.innerHTML = '';
+
   tasks.forEach((task) => {
     const option = document.createElement('option');
     option.value = task.id;
     option.textContent = `${task.title} (ID: ${task.id})`;
     deleteTaskSelect.appendChild(option.cloneNode(true));
+    editTaskSelect.appendChild(option);
+  });
 }
 
 function loadJsonData() {
@@ -130,3 +137,18 @@ document.getElementById('confirmDelete').addEventListener('click', () => {
   deleteTaskById(taskId);
   renderTasks();
 });
+
+document.getElementById('confirmEdit').addEventListener('click', () => {
+  const taskId = parseInt(document.getElementById('editTaskSelect').value);
+  const title = document.getElementById('editTaskTitle').value;
+  const description = document.getElementById('editTaskDescription').value;
+  const labels = document
+    .getElementById('editTaskLabels')
+    .value.split(',')
+    .map((label) => label.trim());
+  const status = parseInt(document.getElementById('editTaskStatus').value);
+
+  editTaskById(taskId, { title, description, labels, status });
+  renderTasks();
+});
+
