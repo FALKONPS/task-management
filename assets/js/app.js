@@ -103,3 +103,15 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 //
 
 loadJsonData();
+document.getElementById('confirmCreate').addEventListener('click', () => {
+  const title = document.getElementById('taskTitle').value;
+  const description = document.getElementById('taskDescription').value;
+  const labels = document
+    .getElementById('taskLabels')
+    .value.split(',')
+    .map((label) => label.trim()); // trim remove whitespace
+  const status = parseInt(document.getElementById('taskStatus').value);
+
+  createTask({ title, description, labels, status });
+  renderTasks();
+});
