@@ -157,7 +157,7 @@ label {
 }
 
 .hidden {
-  display: unset;
+  display: none;
 }
 
 #tasksContainer {

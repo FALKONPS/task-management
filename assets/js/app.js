@@ -132,6 +132,7 @@ document.getElementById('confirmCreate').addEventListener('click', () => {
   createTask({ title, description, labels, status });
   renderTasks();
 });
+
 document.getElementById('confirmDelete').addEventListener('click', () => {
   const taskId = parseInt(document.getElementById('deleteTaskSelect').value);
   deleteTaskById(taskId);
@@ -152,3 +153,31 @@ document.getElementById('confirmEdit').addEventListener('click', () => {
   renderTasks();
 });
 
+document.getElementById('taskAction').addEventListener('change', () => {
+  const displayForm = document.getElementById('taskAction').value;
+
+  console.log('hideRender' + displayForm);
+  switch (displayForm) {
+    case 'create':
+      document.getElementById('createTaskForm').classList.remove('hidden');
+      document.getElementById('deleteTaskForm').classList.add('hidden');
+      document.getElementById('editTaskForm').classList.add('hidden');
+      break;
+    case 'edit':
+      document.getElementById('createTaskForm').classList.add('hidden');
+      document.getElementById('editTaskForm').classList.remove('hidden');
+      document.getElementById('deleteTaskForm').classList.add('hidden');
+      break;
+    case 'delete':
+      document.getElementById('createTaskForm').classList.add('hidden');
+      document.getElementById('editTaskForm').classList.add('hidden');
+      document.getElementById('deleteTaskForm').classList.remove('hidden');
+      break;
+
+    default:
+      document.getElementById('createTaskForm').classList.add('hidden');
+      document.getElementById('deleteTaskForm').classList.add('hidden');
+      document.getElementById('editTaskForm').classList.add('hidden');
+      break;
+  }
+});
