@@ -6,6 +6,12 @@ const status_process = {
 
 var tasks;
 loadLastSession();
+
+function clearlocalStorageDotCom() {
+  localStorage.clear();
+  alert('localStorage has been cleared!');
+  loadLastSession();
+}
 function createTask(task = {}) {
   let id = 0;
   let taskIDArray = tasks.map((item) => item.id);

@@ -18,6 +18,8 @@ body {
   color: var(--text-light);
 }
 header {
+  width: 100%;
+  display: flex;
   background-color: var(--bg-darker);
   padding: 20px;
   box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
@@ -166,4 +168,28 @@ label {
 h2 {
   color: var(--accent-blue);
   margin-bottom: 20px;
+}
+
+.nuke-button {
+  margin-left: auto;
+  margin-right: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  background-color: #ff4136;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px rgb(255, 255, 255);
+  /* transform: translateY(-2px); */
+}
+
+.nuke-button:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 0px 0px rgb(255, 255, 255);
 }
