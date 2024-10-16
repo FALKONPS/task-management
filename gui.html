@@ -33,22 +33,35 @@
           placeholder="Search tasks..."
           oninput="handleInputChange()"
         />
-
         <button id="searchBtn">Search</button>
       </div>
+
       <div id="createTaskForm" class="hidden">
         <h2>Create New Task</h2>
         <div class="form-group">
           <label for="taskTitle">Title:</label>
-          <input type="text" id="taskTitle" required />
+          <input
+            type="text"
+            id="taskTitle"
+            placeholder="Enter task title"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="taskDescription">Description:</label>
-          <textarea id="taskDescription" required></textarea>
+          <textarea
+            id="taskDescription"
+            placeholder="Enter task description"
+            required
+          ></textarea>
         </div>
         <div class="form-group">
           <label for="taskLabels">Labels (comma-separated):</label>
-          <input type="text" id="taskLabels" />
+          <input
+            type="text"
+            id="taskLabels"
+            placeholder="Enter labels (e.g., work, personal)"
+          />
         </div>
         <div class="form-group">
           <label for="taskStatus">Status:</label>
@@ -60,6 +73,7 @@
         </div>
         <button id="confirmCreate">Create Task</button>
       </div>
+
       <div id="deleteTaskForm" class="hidden">
         <h2>Delete Task</h2>
         <div class="form-group">
@@ -68,6 +82,7 @@
         </div>
         <button id="confirmDelete">Delete Task</button>
       </div>
+
       <div id="editTaskForm" class="hidden">
         <h2>Edit Task</h2>
         <div class="form-group">
@@ -76,15 +91,28 @@
         </div>
         <div class="form-group">
           <label for="editTaskTitle">Title:</label>
-          <input type="text" id="editTaskTitle" required />
+          <input
+            type="text"
+            id="editTaskTitle"
+            placeholder="Enter new task title"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="editTaskDescription">Description:</label>
-          <textarea id="editTaskDescription" required></textarea>
+          <textarea
+            id="editTaskDescription"
+            placeholder="Enter new task description"
+            required
+          ></textarea>
         </div>
         <div class="form-group">
           <label for="editTaskLabels">Labels (comma-separated `,`):</label>
-          <input type="text" id="editTaskLabels" />
+          <input
+            type="text"
+            id="editTaskLabels"
+            placeholder="Enter new labels (e.g., work, personal)"
+          />
         </div>
         <div class="form-group">
           <label for="editTaskStatus">Status:</label>
@@ -96,8 +124,10 @@
         </div>
         <button id="confirmEdit">Update Task</button>
       </div>
+
       <div id="tasksContainer" class="tasks-grid"></div>
     </div>
+
     <script src="./assets/js/app.js"></script>
   </body>
 </html>
