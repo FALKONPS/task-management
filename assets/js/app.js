@@ -22,7 +22,6 @@ function createTask(task = {}) {
   task.labels = task.labels || ['Nan'];
   task.status = task.status || 1;
   tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
   return id;
 }
 
@@ -74,6 +73,7 @@ function renderTasks(filteredTasks = tasks) {
     tasksContainer.appendChild(taskCard);
   });
   updateTaskSelects();
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 function searchTask() {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
