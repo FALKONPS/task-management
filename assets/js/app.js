@@ -4,8 +4,8 @@ const status_process = {
   3: 'Done',
 };
 
-let tasks = [];
-
+var tasks;
+loadLastSession();
 function createTask(task = {}) {
   let id = 0;
   let taskIDArray = tasks.map((item) => item.id);
@@ -22,6 +22,7 @@ function createTask(task = {}) {
   task.labels = task.labels || ['Nan'];
   task.status = task.status || 1;
   tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
   return id;
 }
 
@@ -101,10 +102,31 @@ function loadJsonData() {
   fetch('./assets/data/tasks.json')
     .then((response) => response.json())
     .then((data) => {
-      console.log(tasks);
       tasks = data;
+      console.log(tasks);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
       renderTasks();
+    })
+    .catch((error) => {
+      console.error('Error JSON.stringify', error);
     });
+}
+function loadLastSession() {
+  const tasksFromStorage = localStorage.getItem('tasks');
+  if (tasksFromStorage === null) {
+    loadJsonData();
+    console.log('Session is empty, loading data...');
+  } else {
+    try {
+      tasks = JSON.parse(tasksFromStorage);
+      console.log('Loading last session...');
+      renderTasks();
+    } catch (error) {
+      console.error('Error JSON.parse', error);
+      localStorage.removeItem('tasks'); // clear data.
+      loadJsonData();
+    }
+  }
 }
 
 // Event
@@ -117,8 +139,6 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 });
 
 //
-
-loadJsonData();
 
 document.getElementById('confirmCreate').addEventListener('click', () => {
   const title = document.getElementById('taskTitle').value;
