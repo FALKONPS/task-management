@@ -40,13 +40,19 @@ function deleteTaskById(id) {
 
 function editTaskById(id, update = {}) {
   const index = tasks.findIndex((task) => task.id === id);
+  console.log(index);
+  if (index === -1) {
+    return -1;
+  }
   // overwrite values
   tasks[index] = Object.assign({}, tasks[index], update);
 }
 
 function toggleStatus(id, value = -1) {
   const index = tasks.findIndex((task) => task.id === id);
-  if (value > 0) {
+  if (index === -1) {
+    return -1;
+  } else if (value > 0) {
     tasks[index].status = value;
   } else {
     tasks[index].status = ((tasks[index].status + 1) % 3) + 1;
