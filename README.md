@@ -1,6 +1,11 @@
 # Task Management (JavaScript)
 
 This project is part of the **GSG** (Gaza Sky Geeks) course to demonstrate DOM manipulation and showcase JavaScript training in web development.
+> [!NOTE]
+> I don't use the console for input/output.
+> I have some free time, and I am already advanced in JavaScript.
+
+
 
 > [!CAUTION]
 > (Aesthetics are important, especially since the code is uploaded to my public github repo.) <br>
