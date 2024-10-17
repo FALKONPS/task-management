@@ -135,6 +135,16 @@ function loadLastSession() {
   }
 }
 
+function editSelectRender() {
+  const taskId = parseInt(document.getElementById('editTaskSelect').value);
+  const item = tasks.find((item) => item.id === taskId);
+  console.log(item);
+  document.getElementById('editTaskTitle').value = item.title;
+  document.getElementById('editTaskDescription').value = item.description;
+  document.getElementById('editTaskStatus').value = item.status;
+  document.getElementById('editTaskLabels').value = item.labels.join(',');
+}
+
 // Event
 document.getElementById('searchInput').addEventListener('input', () => {
   renderTasks(searchTask());
@@ -169,14 +179,19 @@ document.getElementById('confirmEdit').addEventListener('click', () => {
   const taskId = parseInt(document.getElementById('editTaskSelect').value);
   const title = document.getElementById('editTaskTitle').value;
   const description = document.getElementById('editTaskDescription').value;
+  const status = parseInt(document.getElementById('editTaskStatus').value);
   const labels = document
     .getElementById('editTaskLabels')
     .value.split(',')
     .map((label) => label.trim());
-  const status = parseInt(document.getElementById('editTaskStatus').value);
 
   editTaskById(taskId, { title, description, labels, status });
+
   renderTasks();
+});
+
+document.getElementById('editTaskSelect').addEventListener('input', () => {
+  editSelectRender();
 });
 
 document.getElementById('taskAction').addEventListener('change', () => {
@@ -190,6 +205,7 @@ document.getElementById('taskAction').addEventListener('change', () => {
       document.getElementById('editTaskForm').classList.add('hidden');
       break;
     case 'edit':
+      editSelectRender();
       document.getElementById('createTaskForm').classList.add('hidden');
       document.getElementById('editTaskForm').classList.remove('hidden');
       document.getElementById('deleteTaskForm').classList.add('hidden');
