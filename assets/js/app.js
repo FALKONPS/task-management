@@ -101,6 +101,7 @@ function updateTaskSelects() {
   const editTaskSelect = document.getElementById('editTaskSelect');
   deleteTaskSelect.innerHTML = '';
   editTaskSelect.innerHTML = '';
+  toggleTaskSelect.innerHTML = '';
 
   tasks.forEach((task) => {
     const option = document.createElement('option');
