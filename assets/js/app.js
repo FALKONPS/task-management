@@ -91,6 +91,7 @@ function searchTask() {
 
 function updateTaskSelects() {
   const deleteTaskSelect = document.getElementById('deleteTaskSelect');
+  const toggleTaskSelect = document.getElementById('toggleTaskSelect');
   const editTaskSelect = document.getElementById('editTaskSelect');
   deleteTaskSelect.innerHTML = '';
   editTaskSelect.innerHTML = '';
@@ -100,6 +101,7 @@ function updateTaskSelects() {
     option.value = task.id;
     option.textContent = `${task.title} (ID: ${task.id})`;
     deleteTaskSelect.appendChild(option.cloneNode(true));
+    toggleTaskSelect.appendChild(option.cloneNode(true));
     editTaskSelect.appendChild(option);
   });
 }
@@ -139,10 +141,10 @@ function editSelectRender() {
   const taskId = parseInt(document.getElementById('editTaskSelect').value);
   const item = tasks.find((item) => item.id === taskId);
   console.log(item);
-  document.getElementById('editTaskTitle').value = item.title;
-  document.getElementById('editTaskDescription').value = item.description;
-  document.getElementById('editTaskStatus').value = item.status;
-  document.getElementById('editTaskLabels').value = item.labels.join(',');
+  document.getElementById('editTaskTitle').value = item.title || '';
+  document.getElementById('editTaskDescription').value = item.description || '';
+  document.getElementById('editTaskStatus').value = item.status || '';
+  document.getElementById('editTaskLabels').value = item.labels.join(',') || '';
 }
 
 // Event
@@ -175,6 +177,12 @@ document.getElementById('confirmDelete').addEventListener('click', () => {
   renderTasks();
 });
 
+document.getElementById('confirmToggle').addEventListener('click', () => {
+  const taskId = parseInt(document.getElementById('toggleTaskSelect').value);
+  toggleStatus(taskId);
+  renderTasks();
+});
+
 document.getElementById('confirmEdit').addEventListener('click', () => {
   const taskId = parseInt(document.getElementById('editTaskSelect').value);
   const title = document.getElementById('editTaskTitle').value;
@@ -203,23 +211,36 @@ document.getElementById('taskAction').addEventListener('change', () => {
       document.getElementById('createTaskForm').classList.remove('hidden');
       document.getElementById('deleteTaskForm').classList.add('hidden');
       document.getElementById('editTaskForm').classList.add('hidden');
+      document.getElementById('toggleTaskForm').classList.add('hidden');
+
       break;
     case 'edit':
       editSelectRender();
       document.getElementById('createTaskForm').classList.add('hidden');
       document.getElementById('editTaskForm').classList.remove('hidden');
       document.getElementById('deleteTaskForm').classList.add('hidden');
+      document.getElementById('toggleTaskForm').classList.add('hidden');
+
       break;
     case 'delete':
       document.getElementById('createTaskForm').classList.add('hidden');
       document.getElementById('editTaskForm').classList.add('hidden');
       document.getElementById('deleteTaskForm').classList.remove('hidden');
-      break;
+      document.getElementById('toggleTaskForm').classList.add('hidden');
 
+      break;
+    case 'toggle':
+      document.getElementById('createTaskForm').classList.add('hidden');
+      document.getElementById('editTaskForm').classList.add('hidden');
+      document.getElementById('deleteTaskForm').classList.add('hidden');
+      document.getElementById('toggleTaskForm').classList.remove('hidden');
+
+      break;
     default:
       document.getElementById('createTaskForm').classList.add('hidden');
       document.getElementById('deleteTaskForm').classList.add('hidden');
       document.getElementById('editTaskForm').classList.add('hidden');
+      document.getElementById('toggleTaskForm').classList.add('hidden');
       break;
   }
 });

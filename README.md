@@ -3,9 +3,6 @@
 This project is part of the **GSG** (Gaza Sky Geeks) course to demonstrate DOM manipulation and showcase JavaScript training in web development.
 
 > [!CAUTION]
-> As a professional developer, I follow best practices as much as possible. <br>
-> I refuse to use the console for tasks it's not meant for. <br>
-> The console is for debugging, not for general input/output. <br>
 > (Aesthetics are important, especially since the code is uploaded to my public github repo.) <br>
 
 ## Features

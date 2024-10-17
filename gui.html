@@ -28,6 +28,7 @@
             <option value="create">Create</option>
             <option value="edit">Edit</option>
             <option value="delete">Delete</option>
+            <option value="toggle">Toggle</option>
           </select>
         </div>
         <input
@@ -84,6 +85,15 @@
           <select id="deleteTaskSelect"></select>
         </div>
         <button id="confirmDelete">Delete Task</button>
+      </div>
+
+      <div id="toggleTaskForm" class="hidden">
+        <h2>Toggle Task</h2>
+        <div class="form-group">
+          <label for="toggleTaskSelect">Select Task to Toggle:</label>
+          <select id="toggleTaskSelect"></select>
+        </div>
+        <button id="confirmToggle">Toggle Task</button>
       </div>
 
       <div id="editTaskForm" class="hidden">
